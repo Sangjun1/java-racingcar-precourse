@@ -9,10 +9,12 @@ package com.tistory.ddoriya.model;
 public class RacingGameGroup {
 	private String carNames;
 	private Integer maxMoveCount;
+	private Integer startMoveCount;
 
-	public RacingGameGroup(String carNames, Integer maxMoveCount) {
+	public RacingGameGroup(String carNames, Integer maxMoveCount, Integer startMoveCount) {
 		this.carNames = carNames;
 		this.maxMoveCount = maxMoveCount;
+		this.startMoveCount = startMoveCount;
 	}
 
 	public String getCarNames() {
@@ -21,5 +23,9 @@ public class RacingGameGroup {
 
 	public Integer getMaxMoveCount() {
 		return maxMoveCount;
+	}
+
+	public Integer getStartMoveCount() {
+		return startMoveCount;
 	}
 }

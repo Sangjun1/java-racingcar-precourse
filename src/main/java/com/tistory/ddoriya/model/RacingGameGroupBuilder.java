@@ -5,12 +5,15 @@
  */
 package com.tistory.ddoriya.model;
 
+import com.tistory.ddoriya.constants.GameRule;
+
 /**
  * @author 이상준
  */
 public class RacingGameGroupBuilder {
 	private String carNames;
 	private Integer maxMoveCount;
+	private Integer startMoveCount;
 
 	public RacingGameGroupBuilder setCarNames(String carNames) {
 		this.carNames = carNames;
@@ -22,7 +25,16 @@ public class RacingGameGroupBuilder {
 		return this;
 	}
 
+	public RacingGameGroupBuilder setStartMoveCount(Integer startMoveCount) {
+		this.startMoveCount = startMoveCount;
+		return this;
+	}
+
 	public RacingGameGroup build() {
-		return new RacingGameGroup(carNames, maxMoveCount);
+		if (startMoveCount == null) {
+			startMoveCount = GameRule.RACING_START;
+		}
+
+		return new RacingGameGroup(carNames, maxMoveCount, startMoveCount);
 	}
 }

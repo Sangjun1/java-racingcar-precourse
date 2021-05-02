@@ -36,4 +36,8 @@ public class Car {
 		}
 		return moveText;
 	}
+
+	public void setMoveCount(Integer moveCount) {
+		this.moveCount = moveCount;
+	}
 }
