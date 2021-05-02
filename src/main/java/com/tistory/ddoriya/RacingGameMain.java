@@ -3,7 +3,6 @@
  */
 package com.tistory.ddoriya;
 
-import com.tistory.ddoriya.model.RacingGameGroup;
 import com.tistory.ddoriya.model.RacingGameGroupBuilder;
 
 import java.util.Scanner;
