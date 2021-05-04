@@ -46,25 +46,17 @@ public class RacingGameService {
 		}
 	}
 
-	public List<String> getGameCompletedCarNameList() {
-		List<String> completedCarNameList = new ArrayList<>();
+	public List<String> getGameVictoryCarNameList() {
+		List<String> victoryCarNameList = new ArrayList<>();
+
+		int maxMove = getMaxPosition();
 		for (Car car : carList) {
-			if (car.getMoveCount() == racingGameGroup.getMaxMoveCount()) {
-				completedCarNameList.add(car.getName());
+			if (maxMove == car.getMoveCount()) {
+				victoryCarNameList.add(car.getName());
 			}
 		}
 
-		return completedCarNameList;
-	}
-
-	//게임 완료 여부를 체크.
-	public boolean isGameCompleted() {
-		for (Car car : carList) {
-			if (car.getMoveCount() == racingGameGroup.getMaxMoveCount()) {
-				return true;
-			}
-		}
-		return false;
+		return victoryCarNameList;
 	}
 
 	//게임 메시지를 전달.
@@ -75,6 +67,17 @@ public class RacingGameService {
 		}
 
 		return gameMessageList;
+	}
+
+	private int getMaxPosition() {
+		int maxPosition = 0;
+		for (Car car : carList) {
+			if (maxPosition < car.getMoveCount()) {
+				maxPosition = car.getMoveCount();
+			}
+		}
+
+		return maxPosition;
 	}
 
 	private boolean isMove() {

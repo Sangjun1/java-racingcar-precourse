@@ -5,6 +5,7 @@ package com.tistory.ddoriya;
 
 import com.tistory.ddoriya.model.RacingGameGroupBuilder;
 
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -25,19 +26,23 @@ public class RacingGameMain {
 			System.out.println("시도할 회수는 몇회인가요?");
 			int racingCount = scanner.nextInt();
 			RacingGameService racingGameService = new RacingGameService(new RacingGameGroupBuilder().setCarNames(carNames).setMaxMoveCount(racingCount).build());
-			while (!racingGameService.isGameCompleted()) {
-				racingGameService.executeGame();
-				for (String message : racingGameService.getGameMessages()) {
-					System.out.println(message);
-				}
 
-				System.out.println();
+			for (int i = 0; i < racingCount; i++) {
+				racingGameService.executeGame();
+				gameMessageView(racingGameService.getGameMessages());
 			}
 
-			System.out.println(String.format("%s 가 최종우승하였습니다.", String.join(",", racingGameService.getGameCompletedCarNameList())));
+			System.out.println(String.format("%s 가 최종우승하였습니다.", String.join(",", racingGameService.getGameVictoryCarNameList())));
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
+	}
+
+	private static void gameMessageView(List<String> gameMessageList) {
+		for (String message : gameMessageList) {
+			System.out.println(message);
+		}
+		System.out.println();
 	}
 }
