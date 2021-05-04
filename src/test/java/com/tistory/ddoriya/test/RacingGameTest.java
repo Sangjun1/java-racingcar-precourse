@@ -61,7 +61,9 @@ public class RacingGameTest {
 				.setStartMoveCount(racingCount)
 				.build());
 
-		assertThat(racingGameService.isGameCompleted()).isTrue();
+		assertThat(racingGameService.getGameVictoryCarNameList().get(0)).isEqualTo("pobi");
+		assertThat(racingGameService.getGameVictoryCarNameList().get(1)).isEqualTo("crong");
+		assertThat(racingGameService.getGameVictoryCarNameList().get(2)).isEqualTo("jun");
 	}
 
 	@Test
